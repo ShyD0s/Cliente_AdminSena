@@ -33,22 +33,21 @@
                         <tr>
                             <td class="ps-4 fw-bold text-secondary">#{{ $area['id'] }}</td>
                             <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="rounded-circle bg-success bg-opacity-10 text-success p-2 me-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                                        <i class="bi bi-tag-fill"></i>
-                                    </div>
-                                    <div>
-                                        <span class="fw-semibold text-dark">{{ $area['name'] }}</span>
-                                    </div>
-                                </div>
+                                <form action="{{ route('areas.update', $area['id']) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="text" name="name" value="{{ $area['name'] }}" class="form-control">
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary rounded-3 border-0 me-1" title="Actualizar">Actualizar Área</button>
+                                </form>
                             </td>
                             <td class="text-end pe-4">
-                                <button class="btn btn-sm btn-outline-secondary rounded-3 border-0 me-1" title="Editar (Próximamente)" disabled>
-                                    <i class="bi bi-pencil-fill"></i>
-                                </button>
-                                <button class="btn btn-sm btn-outline-danger rounded-3 border-0" title="Eliminar (Próximamente)" disabled>
-                                    <i class="bi bi-trash-fill"></i>
-                                </button>
+                                <form action="{{ route('areas.destroy', $area['id']) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-outline-danger rounded-3 border-0" title="Eliminar" type="submit">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @empty

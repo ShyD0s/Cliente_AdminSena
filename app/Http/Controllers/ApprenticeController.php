@@ -55,4 +55,38 @@ class ApprenticeController extends Controller
 
         return back()->withErrors(['api_error' => 'No se pudo registrar el aprendiz en la API (verifique si el email o computador ya están asignados).'])->withInput();
     }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'cell_number' => 'required|string|max:255',
+            'course_id' => 'required|integer',
+            'computer_id' => 'nullable|integer',
+        ]);
+
+        $data = $request->all();
+        if (empty($data['computer_id'])) {
+            $data['computer_id'] = null;
+        }
+
+        $response = Http::put($this->apiUrl . '/apprentices/' . $id, $data);
+
+        if ($response->successful()) {
+            return redirect()->route('apprentices.index')->with('success', 'Aprendiz actualizado correctamente.');
+        }
+
+        return back()->withErrors(['api_error' => 'No se pudo actualizar el aprendiz en la API (verifique si el email o computador ya están asignados).'])->withInput();
+    }
+
+    public function destroy($id)
+    {
+        $response = Http::delete($this->apiUrl . '/apprentices/' . $id);
+
+        if ($response->successful()) {
+            return redirect()->route('apprentices.index')->with('success', 'Aprendiz eliminado correctamente.');
+        }
+
+        return back()->withErrors(['api_error' => 'No se pudo eliminar el aprendiz en la API.']);
+    }
 }

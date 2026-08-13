@@ -40,4 +40,29 @@ class AreaController extends Controller
 
         return back()->withErrors(['api_error' => 'No se pudo crear el área en la API.'])->withInput();
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $response = Http::put($this->apiUrl . '/areas/' . $id, $request->all());
+
+        if ($response->successful()) {
+            return redirect()->route('areas.index')->with('success', 'Área actualizada correctamente.');
+        }
+
+        return back()->withErrors(['api_error' => 'No se pudo actualizar el área en la API.'])->withInput();
+    }
+    public function destroy($id)
+    {
+        $response = Http::delete($this->apiUrl . '/areas/' . $id);
+
+        if ($response->successful()) {
+            return redirect()->route('areas.index')->with('success', 'Área eliminada correctamente.');
+        }
+
+        return back()->withErrors(['api_error' => 'No se pudo eliminar el área en la API.']);
+    }
 }

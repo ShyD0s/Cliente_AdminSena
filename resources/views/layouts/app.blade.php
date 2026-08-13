@@ -131,7 +131,7 @@
             border-top: 4px solid var(--sena-green);
         }
 
-        /* Micro-animations */
+        /* animations */
         .animate-fade-in {
             animation: fadeIn 0.4s ease-out forwards;
         }
@@ -196,7 +196,7 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Main -->
     <main class="py-5 animate-fade-in">
         <div class="container">
             @if(session('success'))
@@ -231,7 +231,7 @@
         </div>
     </footer>
 
-    <!-- Bootstrap 5 JS Bundle -->
+    <!-- Bootstrap src -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     @yield('scripts')
 </body>
