@@ -141,6 +141,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
+    <!-- el yield se usa para que las vistas puedan agregar estilos personalizados 
+        y se pueden anadir estilos especificos para cada vista  -->
     @yield('styles')
 </head>
 <body>
@@ -148,7 +150,7 @@
     <nav class="navbar navbar-expand-lg navbar-custom py-3">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-success fs-4" href="{{ url('/') }}">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Sena_Colombia_logo.svg" alt="SENA Logo">
+                <img src="https://sciudadanos.sena.edu.co/Resources/logoSena.png" alt="SENA Logo">
                 <span style="letter-spacing: -0.5px;">Admin<span class="text-dark">SENA</span></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
