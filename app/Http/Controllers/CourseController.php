@@ -49,4 +49,50 @@ class CourseController extends Controller
 
         return back()->withErrors(['api_error' => 'No se pudo crear el curso en la API.'])->withInput();
     }
+
+    public function edit($id)
+    {
+        $courseResponse = Http::get($this->apiUrl . '/courses/' . $id);
+        $areasResponse = Http::get($this->apiUrl . '/areas');
+        $centersResponse = Http::get($this->apiUrl . '/training_centers');
+
+        if (!$courseResponse->successful()) {
+            return redirect()->route('courses.index')->withErrors(['api_error' => 'No se pudo obtener el curso de la API.']);
+        }
+
+        $course = $courseResponse->json();
+        $areas = $areasResponse->successful() ? $areasResponse->json() : [];
+        $training_centers = $centersResponse->successful() ? $centersResponse->json() : [];
+
+        return view('courses.edit', compact('course', 'areas', 'training_centers'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'course_number' => 'required|string|max:255',
+            'day' => 'required|string|max:255',
+            'area_id' => 'required|integer',
+            'training_center_id' => 'required|integer',
+        ]);
+
+        $response = Http::put($this->apiUrl . '/courses/' . $id, $request->all());
+
+        if ($response->successful()) {
+            return redirect()->route('courses.index')->with('success', 'Curso formativo actualizado correctamente.');
+        }
+
+        return back()->withErrors(['api_error' => 'No se pudo actualizar el curso en la API.'])->withInput();
+    }
+
+    public function destroy($id)
+    {
+        $response = Http::delete($this->apiUrl . '/courses/' . $id);
+
+        if ($response->successful()) {
+            return redirect()->route('courses.index')->with('success', 'Curso formativo eliminado correctamente.');
+        }
+
+        return back()->withErrors(['api_error' => 'No se pudo eliminar el curso en la API.']);
+    }
 }

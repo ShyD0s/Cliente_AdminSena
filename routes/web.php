@@ -16,6 +16,7 @@ Route::get('/', function () {
 Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
 Route::get('/teachers/create', [TeacherController::class, 'create'])->name('teachers.create');
 Route::post('/teachers', [TeacherController::class, 'store'])->name('teachers.store');
+Route::get('/teachers/{id}/edit', [TeacherController::class, 'edit'])->name('teachers.edit');
 Route::put('/teachers/{id}', [TeacherController::class, 'update'])->name('teachers.update');
 Route::delete('/teachers/{id}', [TeacherController::class, 'destroy'])->name('teachers.destroy');
 
@@ -23,6 +24,7 @@ Route::delete('/teachers/{id}', [TeacherController::class, 'destroy'])->name('te
 Route::get('/apprentices', [ApprenticeController::class, 'index'])->name('apprentices.index');
 Route::get('/apprentices/create', [ApprenticeController::class, 'create'])->name('apprentices.create');
 Route::post('/apprentices', [ApprenticeController::class, 'store'])->name('apprentices.store');
+Route::get('/apprentices/{id}/edit', [ApprenticeController::class, 'edit'])->name('apprentices.edit');
 Route::put('/apprentices/{id}', [ApprenticeController::class, 'update'])->name('apprentices.update');
 Route::delete('/apprentices/{id}', [ApprenticeController::class, 'destroy'])->name('apprentices.destroy');
 
@@ -38,6 +40,7 @@ Route::delete('/areas/{id}', [AreaController::class, 'destroy'])->name('areas.de
 Route::get('/training_centers', [TrainingCenterController::class, 'index'])->name('training_centers.index');
 Route::get('/training_centers/create', [TrainingCenterController::class, 'create'])->name('training_centers.create');
 Route::post('/training_centers', [TrainingCenterController::class, 'store'])->name('training_centers.store');
+Route::get('/training_centers/{id}/edit', [TrainingCenterController::class, 'edit'])->name('training_centers.edit');
 Route::put('/training_centers/{id}', [TrainingCenterController::class, 'update'])->name('training_centers.update');
 Route::delete('/training_centers/{id}', [TrainingCenterController::class, 'destroy'])->name('training_centers.destroy');
 
@@ -45,6 +48,7 @@ Route::delete('/training_centers/{id}', [TrainingCenterController::class, 'destr
 Route::get('/computers', [ComputerController::class, 'index'])->name('computers.index');
 Route::get('/computers/create', [ComputerController::class, 'create'])->name('computers.create');
 Route::post('/computers', [ComputerController::class, 'store'])->name('computers.store');
+Route::get('/computers/{id}/edit', [ComputerController::class, 'edit'])->name('computers.edit');
 Route::put('/computers/{id}', [ComputerController::class, 'update'])->name('computers.update');
 Route::delete('/computers/{id}', [ComputerController::class, 'destroy'])->name('computers.destroy');
 
@@ -52,5 +56,6 @@ Route::delete('/computers/{id}', [ComputerController::class, 'destroy'])->name('
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
 Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
+Route::get('/courses/{id}/edit', [CourseController::class, 'edit'])->name('courses.edit');
 Route::put('/courses/{id}', [CourseController::class, 'update'])->name('courses.update');
 Route::delete('/courses/{id}', [CourseController::class, 'destroy'])->name('courses.destroy');

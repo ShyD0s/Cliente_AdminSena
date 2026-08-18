@@ -227,9 +227,9 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container text-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Sena_Colombia_logo.svg" alt="SENA Logo" style="height: 30px; filter: brightness(0) invert(1); margin-bottom: 1rem;">
+            <img src="https://sciudadanos.sena.edu.co/Resources/logoSena.png" alt="SENA Logo" style="height: 30px; margin-bottom: 1rem;">
             <p class="mb-1 fw-bold text-white">Servicio Nacional de Aprendizaje - SENA</p>
-            <p class="mb-0 small text-muted">© {{ date('Y') }} Plataforma de Gestión Académica AdminSena. Todos los derechos reservados.</p>
+            <p class="mb-0 small text-white">© {{ date('Y') }} Plataforma de Gestión Académica AdminSena. Todos los derechos reservados.</p>
         </div>
     </footer>
 

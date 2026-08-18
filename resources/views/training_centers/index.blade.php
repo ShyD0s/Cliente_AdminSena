@@ -49,12 +49,16 @@
                                 </span>
                             </td>
                             <td class="text-end pe-4">
-                                <button class="btn btn-sm btn-outline-secondary rounded-3 border-0 me-1" title="Editar (Próximamente)" disabled>
+                                <a href="{{ route('training_centers.edit', $center['id']) }}" class="btn btn-sm btn-outline-secondary rounded-3 border-0 me-1" title="Editar">
                                     <i class="bi bi-pencil-fill"></i>
-                                </button>
-                                <button class="btn btn-sm btn-outline-danger rounded-3 border-0" title="Eliminar (Próximamente)" disabled>
-                                    <i class="bi bi-trash-fill"></i>
-                                </button>
+                                </a>
+                                <form action="{{ route('training_centers.destroy', $center['id']) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Está seguro de eliminar este centro de formación?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-sm btn-outline-danger rounded-3 border-0" title="Eliminar" type="submit">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @empty

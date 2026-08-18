@@ -55,6 +55,24 @@ class ApprenticeController extends Controller
 
         return back()->withErrors(['api_error' => 'No se pudo registrar el aprendiz en la API (verifique si el email o computador ya están asignados).'])->withInput();
     }
+
+    public function edit($id)
+    {
+        $apprenticeResponse = Http::get($this->apiUrl . '/apprentices/' . $id);
+        $coursesResponse = Http::get($this->apiUrl . '/courses');
+        $computersResponse = Http::get($this->apiUrl . '/computers');
+
+        if (!$apprenticeResponse->successful()) {
+            return redirect()->route('apprentices.index')->withErrors(['api_error' => 'No se pudo obtener el aprendiz de la API.']);
+        }
+
+        $apprentice = $apprenticeResponse->json();
+        $courses = $coursesResponse->successful() ? $coursesResponse->json() : [];
+        $computers = $computersResponse->successful() ? $computersResponse->json() : [];
+
+        return view('apprentices.edit', compact('apprentice', 'courses', 'computers'));
+    }
+
     public function update(Request $request, $id)
     {
         $request->validate([
