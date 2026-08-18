@@ -8,6 +8,7 @@ use App\Http\Controllers\TrainingCenterController;
 use App\Http\Controllers\ComputerController;
 use App\Http\Controllers\CourseController;
 
+
 Route::get('/', function () {
     return view('dashboard');
 });
